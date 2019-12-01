@@ -29,13 +29,13 @@ public class ActivityAPI {
 	
 	@RequestMapping(
 			method=RequestMethod.POST,
-			path="/playground/activities/{type}/{name}",
+			path="/zoo/activities/{type}/{name}",
 			produces=MediaType.APPLICATION_JSON_VALUE,
 			consumes=MediaType.APPLICATION_JSON_VALUE)
 		public Object performActivity(@PathVariable("type") String type,
 				@PathVariable("name") String name,@RequestBody ActivityTO newActivity) throws InvalidActivityException {
 			ActivityEntity activityRetrive = newActivity.toEntity();
-				this.activityServices.performActivity(activityRetrive.getType(),activityRetrive.getName(),activityRetrive);
+				this.activityServices.performActivity(type,name,activityRetrive);
 				return new ActivityTO(activityRetrive);
 	}
 }

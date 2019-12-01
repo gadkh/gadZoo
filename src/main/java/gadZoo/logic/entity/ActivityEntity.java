@@ -1,5 +1,6 @@
 package gadZoo.logic.entity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -21,11 +24,13 @@ public class ActivityEntity {
 	private String type;
 	private String name;
 	private String id;
+	private Date date;
 	private Map<String, Object> attributes;
 	
 	public ActivityEntity() {
 		super();
 		this.attributes=new HashMap<>();
+		this.date=new Date();
 	}
 
 	public String getType() {
@@ -44,6 +49,15 @@ public class ActivityEntity {
 	public void setName(String name) {
 		this.name = name;
 		this.setId(this.type+"@@"+this.name);
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
 	@Id

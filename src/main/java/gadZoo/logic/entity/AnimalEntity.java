@@ -11,6 +11,7 @@ public class AnimalEntity {
 	private String type;
 	private String age;
 	private String food;
+	private int points;
 	
 	public AnimalEntity() {
 		super();
@@ -49,6 +50,14 @@ public class AnimalEntity {
 
 	public void setAge(String age) {
 		this.age = age;
+	}
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public String getFood() {
