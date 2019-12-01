@@ -7,17 +7,19 @@ public class AnimalTO {
 	private String type;
 	private String age;
 	private String food;
+	private int points;
 	
 	public AnimalTO() {
 		super();
 	}
 
-	public AnimalTO(String name, String type, String age, String food) {
+	public AnimalTO(String name, String type, String age, String food, int points) {
 		super();
 		this.name = name;
 		this.type = type;
 		this.age = age;
 		this.food = food;
+		this.points=points;
 	}
 	
 	public AnimalTO(AnimalEntity animalEntity) {
@@ -26,7 +28,19 @@ public class AnimalTO {
 			this.food=animalEntity.getFood();
 			this.age=animalEntity.getAge();
 			this.type=animalEntity.getType();
+			this.points=animalEntity.getPoints();
+			
 		}
+	}
+	
+
+
+	public int getPoints() {
+		return points;
+	}
+
+	public void setPoints(int points) {
+		this.points = points;
 	}
 
 	public String getName() {
@@ -67,6 +81,17 @@ public class AnimalTO {
 		animalEntity.setFood(this.food);
 		animalEntity.setAge(this.age);
 		animalEntity.setType(this.type);
+		animalEntity.setPoints(this.points);
+		
+		animalEntity.setId(this.type+"@@"+this.name);
 		return animalEntity;
 	}
+
+	@Override
+	public String toString() {
+		return "AnimalTO [name=" + name + ", type=" + type + ", age=" + age + ", food=" + food + ", points=" + points
+				+ "]";
+	}
+	
+	
 }

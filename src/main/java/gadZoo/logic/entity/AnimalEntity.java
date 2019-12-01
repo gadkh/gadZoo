@@ -15,6 +15,7 @@ public class AnimalEntity {
 	
 	public AnimalEntity() {
 		super();
+		this.setId(this.type+"@@"+this.name);
 	}
 
 	@Id

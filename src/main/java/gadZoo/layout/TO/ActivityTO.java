@@ -7,7 +7,8 @@ import gadZoo.logic.entity.ActivityEntity;
 
 public class ActivityTO {
 	private String type;
-	private String name;
+	private String animalname;
+	private String animalType;
 	private Map<String, Object> attributes;
 	public ActivityTO() {
 		super();
@@ -16,8 +17,10 @@ public class ActivityTO {
 	public ActivityTO (ActivityEntity activityEntity) {
 		this();
 		if (activityEntity != null) {
-			this.name=activityEntity.getName();
+			this.animalname=activityEntity.getAnimalName();
+			this.animalType=activityEntity.getAnimalType();
 			this.type=activityEntity.getType();
+			
 			this.attributes = activityEntity.getAttributes();
 		}
 			
@@ -28,11 +31,18 @@ public class ActivityTO {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public String getName() {
-		return name;
+	
+	public String getAnimalname() {
+		return animalname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setAnimalname(String animalname) {
+		this.animalname = animalname;
+	}
+	public String getAnimalType() {
+		return animalType;
+	}
+	public void setAnimalType(String animalType) {
+		this.animalType = animalType;
 	}
 	public Map<String, Object> getAttributes() {
 		return attributes;
@@ -43,9 +53,16 @@ public class ActivityTO {
 	public ActivityEntity toEntity() {
 		ActivityEntity activityRetrive = new ActivityEntity();
 	
-		activityRetrive.setName(this.name);
+		activityRetrive.setAnimalName(this.animalname);
+		activityRetrive.setAnimalType(this.animalType);
 		activityRetrive.setType(this.type);
 		activityRetrive.setAttributes(this.attributes);
 		return activityRetrive;
 	}
+	@Override
+	public String toString() {
+		return "ActivityTO [type=" + type + ", animalname=" + animalname + ", animalType=" + animalType
+				+ ", attributes=" + attributes + "]";
+	}
+	
 }

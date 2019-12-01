@@ -9,7 +9,7 @@ import gadZoo.logic.exception.AnimalNotFoundException;
 
 
 public interface AnimalService {
-	public AnimalEntity createAnimal(AnimalEntity animal) throws AnimalAlreadyExistException;
+	public AnimalEntity createAnimal(AnimalEntity animal) throws AnimalAlreadyExistException ;
 	public AnimalEntity getAnimal(String type,String name) throws AnimalNotFoundException;
 	public void updateAnimal(String type,String name,AnimalEntity newAnimal) throws AnimalNotFoundException;
 	public void cleanup();

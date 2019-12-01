@@ -22,7 +22,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Table(name = "ACTIVITIES")
 public class ActivityEntity {
 	private String type;
-	private String name;
+	private String animalType;
+	private String animalName;
 	private String id;
 	private Date date;
 	private Map<String, Object> attributes;
@@ -39,16 +40,24 @@ public class ActivityEntity {
 
 	public void setType(String type) {
 		this.type = type;
-		this.setId(this.type+"@@"+this.name);
 	}
 
-	public String getName() {
-		return name;
+	public String getAnimalType() {
+		return animalType;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-		this.setId(this.type+"@@"+this.name);
+	public void setAnimalType(String animalType) {
+		this.animalType = animalType;
+		this.setId(this.animalType+"@@"+this.animalName);
+	}
+
+	public String getAnimalName() {
+		return animalName;
+	}
+
+	public void setAnimalName(String animalName) {
+		this.animalName = animalName;
+		this.setId(this.animalType+"@@"+this.animalName);
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

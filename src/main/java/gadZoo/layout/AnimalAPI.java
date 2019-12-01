@@ -44,9 +44,8 @@ public class AnimalAPI {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST,path="/zoo/postAnimal",produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public AnimalTO createAnimal(@RequestBody AnimalTO animalTo) throws AnimalAlreadyExistException {
+	public AnimalTO createAnimal(@RequestBody AnimalTO animalTo) throws AnimalAlreadyExistException   {
 		AnimalEntity animalEntity=animalTo.toEntity();
-		this.animalService.createAnimal(animalEntity);
 		return new AnimalTO(this.animalService.createAnimal(animalEntity));
 	}
 	

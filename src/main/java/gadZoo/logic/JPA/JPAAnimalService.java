@@ -25,10 +25,13 @@ public class JPAAnimalService implements AnimalService {
 
 	@Transactional
 	@Override
-	public AnimalEntity createAnimal(AnimalEntity animal) throws AnimalAlreadyExistException {
-		String key = animal.getType() + "@@" + animal.getName();
-		if (this.animalDao.existsById(key)) {
-			return this.animalDao.save(animal);
+	public AnimalEntity createAnimal(AnimalEntity animal) throws AnimalAlreadyExistException  {
+		String key = animal.getId();
+		if (!this.animalDao.existsById(key)) {
+			AnimalEntity e=this.animalDao.save(animal);
+			System.err.println("e id= "+e.getId());
+			return e;
+//			return this.animalDao.save(animal);
 		}
 		else
 		{
@@ -39,7 +42,9 @@ public class JPAAnimalService implements AnimalService {
 	@Transactional
 	@Override
 	public AnimalEntity getAnimal(String type, String name) throws AnimalNotFoundException {
+		System.err.println("S= "+type + "@@" + name);
 		String key = type + "@@" + name;
+//		return this.animalDao.findById(key).orElseThrow(() -> new RuntimeException());
 		return this.animalDao.findById(key).orElseThrow(() -> new AnimalNotFoundException("We don't have animal in type "+type+" and name "+name+" here"));
 	}
 
