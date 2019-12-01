@@ -3,6 +3,8 @@ package gadZoo.layout.TO;
 import java.util.HashMap;
 import java.util.Map;
 
+import gadZoo.logic.entity.ActivityEntity;
+
 public class ActivityTO {
 	private String type;
 	private String name;
@@ -10,6 +12,15 @@ public class ActivityTO {
 	public ActivityTO() {
 		super();
 		this.attributes=new HashMap<>();
+	}
+	public ActivityTO (ActivityEntity activityEntity) {
+		this();
+		if (activityEntity != null) {
+			this.name=activityEntity.getName();
+			this.type=activityEntity.getType();
+			this.attributes = activityEntity.getAttributes();
+		}
+			
 	}
 	public String getType() {
 		return type;
@@ -28,5 +39,13 @@ public class ActivityTO {
 	}
 	public void setAttributes(Map<String, Object> attributes) {
 		this.attributes = attributes;
+	}
+	public ActivityEntity toEntity() {
+		ActivityEntity activityRetrive = new ActivityEntity();
+	
+		activityRetrive.setName(this.name);
+		activityRetrive.setType(this.type);
+		activityRetrive.setAttributes(this.attributes);
+		return activityRetrive;
 	}
 }
